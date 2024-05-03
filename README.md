@@ -1,2 +1,2 @@
-# projeto-individual
-Meu projeto individual para o 1° semestre ADS - SPTech
+# Projeto_Individual
+Projeto Individual - 1° Semestre
