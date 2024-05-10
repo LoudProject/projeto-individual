@@ -11,12 +11,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="telaHome">
         <div id="header">
-            <ul class="navbar">
+            <ul class="navbar aos" data-aos="fade-down" data-aos-delay="300">
                 <img src="./Assets/imgLoud.png">
                 <li id="li_esquerda">História</li>
                 <li id="li_esquerda">Competitivo</li>
@@ -42,10 +44,10 @@
         </div>
         <!-- Origem -->
         <div class="origem">
-            <div>
+            <div class="aos" data-aos="fade-right" data-aos-delay="200">
                 <img src="Assets/imgBrunoPH.jpg">
             </div>
-            <div class="texto">
+            <div class="texto aos" data-aos="fade-left" data-aos-delay="200">
                 <h1>Como surgiu a LOUD?</h1>
                 <h2> A LOUD surgiu em 2019, criada pelo influenciador Bruno "PlayHard" e pelos empresários Jean Ortega e Matthew Ho. Inicialmente, a organização participava apenas em Free Fire, mas, ao longo dos anos, expandiu sua presença para games como Fortnite, League of Legends e Valorant. A LOUD possui enorme foco em criação de conteúdo e investe pesado nas redes sociais, sendo a primeira equipe de esports a atingir a marca de 1 bilhão de visualizações no YouTube.</h2>
             </div>
@@ -57,8 +59,59 @@
             </div>
             <img src="Assets/imgFollow.jpg">
         </div>
+        <div class="jogos">
+            <div class="Competitivo">
+                <h1>Cenário Competitivo</h1>
+            </div>
+
+            <div class="slider">
+                <div class="slides">
+                    <!-- radio buttons -->
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <!-- <input type="radio" name="radio-btn" id="radio4"> -->
+                    <!-- fim radio buttons -->
+
+                    <!-- slide images -->
+                    <div class="slide first">
+                        <img src="Assets/LoudLol.jpg" alt="imagem 1">
+                    </div>
+                    <div class="slide">
+                        <img src="Assets/loudTime.webp" alt="imagem 2">
+                    </div>
+                    <div class="slide">
+                        <img src="Assets/loufFreeFire.webp" alt="imagem 3">
+                    </div>
+
+
+
+                    <!-- Navigation auto -->
+                    <!-- <div class="navigation_auto">
+                        <div class="auto-btn1"></div>
+                        <div class="auto-btn2"></div>
+                        <div class="auto-btn3"></div>
+
+                    </div> -->
+                </div>
+
+                <div class="manual-navigation">
+                    <label for="radio1" id="btn_1" class="manual-btn"></label>
+                    <label for="radio2" id="btn_2" class="manual-btn"></label>
+                    <label for="radio3" id="btn_3" class="manual-btn"></label>
+                </div>
+
+
+            </div>
+            <div class="FF">
+                <h1>A Loud tornou-se conhecida nacionalmente após começar a criar conteúdo para o youtube, e investir no cenário competitivo de Free Fire em 2019</h1>
+            </div>
+        </div>
     </div>
 
+    <script src="script.js"></script>
+    <script>AOS.init();
+    </script>
 </body>
 
 </html>
