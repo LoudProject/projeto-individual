@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(26, 27, 25);
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    font-family: "Rubik", sans-serif;
+
+}
+
+.voltarHome img{
+    width: 80px;
+    height: 70px;
+    /* margin-left: 40px;
+    margin-top: 40px; */
+    cursor: pointer;
+
+}
+
+.tela{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    /* border: solid red 3px; */
+}
+
+
+.tela h1{
+    color: white;
+    font-size: 2rem;
+}
+
+.comecar-quiz, .proximo-btn{
+    background-color: #1cb833;
+    font-size: 2rem;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #ffffff;
+    transition: all 0.3s;
+}
+
+.comecar-quiz:hover{
+    transform: scale(1.02) translateY(-2px) ;
+}
+
+.quizTela{
+    /* background-color: red; */
+    width: 800px;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.pergunta{
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.respostaBtn{
+    background-color: #20232e;
+    font-size: 1.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    border: 2px solid #384052;
+    border-bottom: 5px solid #384052;
+    text-align: left;
+    padding: 20px 30px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.respostaBtn:hover{
+    transform: sacle(1.01) translateY(-2px);
+    border-bottom: 8px solid #384052;
+}
+
+.respostaCorreta{
+    background-color: #1cb833;
+    color: #000;
+    border-color: #58d57a ;
+}
+
+.respostaCorreta:hover{
+    border-color: #58d57a;
+}
+
+.respostaErrada{
+    background-color: #e66f9e;
+    color: #000;
+    border-color: #de4670 ;
+}
+
+.respostaErrada:hover{
+    border-color: #de4670;
+}
+
+.proximo-btn{
+    display: none;
+}
+
+.respostaBtn:disabled{
+    cursor: no-drop;
+}
+
+.score{
+    color: rgb(15, 194, 15);
+}

@@ -18,6 +18,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    z-index: 3;
 }
 #header img{
     width: 4vw;
@@ -73,7 +76,7 @@ body{
     display: flex;
     justify-content: space-evenly;
     /* border: solid red 2px; */
-    height: 550px;
+    height: 650px;
     align-items: center;
     background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6) ), url(../Assets/ImagemFundo.png) ;
     background-repeat:no-repeat;
