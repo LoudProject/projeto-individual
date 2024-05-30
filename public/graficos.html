@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loud Estatísticas</title>
+    <link rel="stylesheet" href="../public/css/grafico.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="header">
+        <ul class="navbar aos" data-aos="fade-down" data-aos-delay="100">
+            <a href="index.html"><img src="assets/imgLoud.png   "></a>
+        </ul>
+    </div>
+
+
+    <div class="borda">
+
+        <div class="grafico-pizza">
+            <canvas id="myChart" style=" height:40vh; width:40vw" ></canvas>
+        </div>
+        
+    </div>
+</body>
+
+</html>
+
+<script>
+        const labelsBarra = [
+        'Valorant',
+        'LoL',
+        'Free Fire',
+    ];
+
+    const dataBarra = {
+        labels: labelsBarra,
+        datasets: [{
+            label: 'Pontuação',
+            backgroundColor: '#35D32F',
+            hoverBorderColor: '#FFFFFF',
+            hoverBackgroundColor: '#35D32F',
+            borderWidth: [3, 3, 3, 3, 3, 3, 3, 6],
+            borderColor: '#111723',
+            data: [10, 7, 15],
+        }]
+    };
+
+    const configBarra = {
+        type: 'bar',
+        data: dataBarra,
+        options: {
+            scales: {
+                y: {
+                    suggestedMin: 1,
+                    ticks: {
+                        color: 'white',
+                        font: {
+                            size: 13
+                        }
+                    },
+                    grid: {
+                        color: '#35D32F'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'white'
+                    }, grid: {
+                        color: 'transparent'
+                    }
+
+                }
+            }, 
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white',
+                        font: {
+                            size: 20
+                        }
+                    }
+                }
+            }
+        }
+    };;
+  </script>
+
+<script>
+    const myChartBarra = new Chart(
+        document.getElementById('myChart'),
+        configBarra
+    );
+</script>

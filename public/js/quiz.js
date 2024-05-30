@@ -134,14 +134,17 @@ function displayPergunta() {
     });
 }
 
+var lista_respostas = [];
 
 function checkResposta(e){
     const selectedButton = e.target;
     if(selectedButton.dataset.respostaCorreta){
         userScore++;
         console.log(userScore);
+        lista_respostas.push(1)
         selectedButton.classList.add('respostaCorreta');
     } else {
+        lista_respostas.push(0)
         selectedButton.classList.add('respostaErrada');
 
     }
@@ -189,3 +192,146 @@ function resetContainer(){
     perguntaEl.textContent = "";
     respostasButtons.innerHTML = "";
 }
+
+
+
+function criarQuiz() {
+    var id = sessionStorage.ID_USUARIO
+
+
+    fetch("/quiz/criarQuiz", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuarioServer: id
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO criarQuiz()!")
+        console.log(resposta)
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log("Deu certo!");
+                console.log(JSON.stringify(json));
+                var dados = JSON.stringify(json);
+                console.log(dados)
+                console.log(dados[0])
+                console.log(dados[0].pontos)
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar procurar os dados do !");
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
+
+
+
+
+InserirValoresQuiz();
+
+function InserirValoresQuiz() {
+
+    for (var contador = 0; contador < lista_respostas.length; contador++) {
+
+        fetch("/quiz/VerValoresQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkQuizServer: 2,
+                idQuestaoServer: (contador + 1),
+                acertosServer: lista_respostas[contador]
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+            console.log(resposta)
+    
+            if (resposta.ok) {
+                console.log(resposta);
+    
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log("Funcionou");
+                    console.log(JSON.stringify(json));
+                    var dados = JSON.stringify(json);
+                    console.log(dados)
+                    console.log(dados[0])
+                    console.log(dados[0].pontos)
+                });
+    
+            } else {
+    
+                console.log("Houve um erro ao tentar procurar os dados do usuario!");
+            }
+    
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+ 
+ 
+    }
+
+
+
+    return false;
+}
+
+
+VerPontosUsuario();
+
+function VerPontosUsuario() {
+
+
+    fetch("/quiz/VerPontosUsuario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fkQuizServer: 2
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+        console.log(resposta)
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log("Funcionou");
+                console.log(JSON.stringify(json));
+                var dados = JSON.stringify(json);
+                console.log(dados)
+                console.log(dados[0])
+                console.log(dados[0].pontos)
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar procurar os dados do usuario!");
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
+
+
+console.log(lista_respostas)
+

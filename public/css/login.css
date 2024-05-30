@@ -60,6 +60,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 .box button{
     width: 100px;

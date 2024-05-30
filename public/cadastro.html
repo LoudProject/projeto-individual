@@ -89,7 +89,7 @@
     var nome = iptNome.value;
     var email = iptEmail.value;
     var senha = iptSenha.value;
-    var confirmarSenha = iptConfirm;
+    var confirmarSenha = iptConfirm.value;
 
     nomeMsg.innerHTML = "";
     emailMsg.innerHTML = "";
@@ -101,21 +101,22 @@
     if(nome == "" || email == "" || senha == "" || confirmarSenha == ""){
       alert(`Todos os campos devem estar preenchidos!`)
     } else if(nome.length <= 2){
-      nomeMsg.innerHTML += `O nome deve ter mais de 2 Caracteres `;
-      finalizarAguardar();
+      nomeMsg.innerHTML += `O nome deve ter mais de 2 Caracteres. `;
+      // finalizarAguardar();
       return false;
 
     } else if (email.indexOf('@') < 0 || email.indexOf('.') < 0){
-      emailMsg.innerHTML += `Email sem @ ou .`;
-      finalizarAguardar();
+      emailMsg.innerHTML += `Email sem "@ ou "."`;
+      // finalizarAguardar();
       return false;
 
     } else if(senha.length < 7){
-      senhaMsg.innerHTML += `A senha deve ter pelo menos 6 dígitos`;
+      senhaMsg.innerHTML += `A senha deve ter pelo menos 6 dígitos.`;
+      // finalizarAguardar();
+      return false;
 
     } else if(confirmarSenha != senha){
-      confirmMsg.innerHTML += `A senha deve ser a mesma do campo acima`;
-
+      confirmMsg.innerHTML += `A senha esta diferente do campo acima.`
     } else {
       cadastrar()
     }
@@ -133,10 +134,10 @@
     // Agora vá para o método fetch logo abaixo
     var lista_jogos = [];
     var jogo = document.getElementsByName('checkbox');
-    // var nomeVar = iptNome.value;
-    // // var emailVar = iptEmail.value;
-    // // var senhaVar = iptSenha.value;
-    // // var confirmacaoSenhaVar = iptConfirm.value;
+    var nomeVar = iptNome.value;
+    var emailVar = iptEmail.value;
+    var senhaVar = iptSenha.value;
+    var confirmacaoSenhaVar = iptConfirm.value;
 
     for (x = 0; x < 3; x++) {
       if (jogo[x].checked) {
@@ -154,7 +155,7 @@
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
+      // finalizarAguardar();
       return false;
     } else {
       // setInterval(sumirMensagem, 5000);
@@ -183,8 +184,6 @@
             }, "2000");
 
 
-            mensagem_erro.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
 
 
