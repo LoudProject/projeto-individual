@@ -537,6 +537,95 @@ body{
     color: white;
 }
 
+.sobreMim {
+    display: flex;
+    justify-content: space-evenly;
+    height: 400px;
+}
+
+.dev{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 1200px;
+    /* border: red solid 3px; */
+}
+
+.dev img{
+    width: 300px;
+    height: 300px;
+    border: solid 3px #35D32F;
+    border-radius: 30px;
+}
+
+.dev .eu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.eu h1{
+    font-size: x-large;
+    color: #35D32F;
+
+}
+
+.eu h2{
+    font-size: medium;
+    max-width: 500px;
+    color: white;
+}
+
+.footer{
+    background-color: #35D32F;
+    color: white;
+    height: 100px;
+}
+
+.footer .container{
+    justify-content: space-evenly;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer .container p{
+    color: white;
+}
+
+.email {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.email img{
+    width: 50px;
+    height: 50px;
+}
+
+.telefone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.telefone img{
+    width: 50px;
+    height: 50px;
+}
+
+.GitHub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.GitHub img{
+    width: 50px;
+    height: 50px;
+}
+
 
 
 
