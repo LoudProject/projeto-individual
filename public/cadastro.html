@@ -144,6 +144,11 @@
         lista_jogos.push(jogo[x].value);
       }
     }
+
+    if (lista_jogos.length == 0) {
+      lista_jogos.push("Nenhum");
+    }
+
     if (
       nomeVar == "" ||
       emailVar == "" ||

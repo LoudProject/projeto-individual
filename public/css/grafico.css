@@ -42,10 +42,32 @@ body{
 
 .borda{
     display: flex;
-    border: solid 3px #35D32F;
-    /* border: solid 3px #de0f0f; */
     width: 100%;
     height: 800px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+.borda-verde{
+    border: solid 3px #35D32F;
+    border-radius: 10px;
+    padding: 30px;
+    color: white;
+}
+
+.kpi{
+    border: solid 3px #35D32F;
+    border-radius: 10px;
+    color: white;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.kpi .pontos p{
+    color: #35D32F;
+    font-size: 80pt;
 }

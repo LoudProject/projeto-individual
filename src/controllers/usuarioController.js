@@ -84,7 +84,80 @@ function cadastrar(req, res) {
     }
 }
 
+
+function pegarJogos(req, res) {
+        usuarioModel.pegarJogos()
+            .then(
+                function (resultadoAutenticar) {
+                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                        console.log(resultadoAutenticar);
+                        res.json({
+                            valorant: resultadoAutenticar[0].valorant,                               
+                            lol: resultadoAutenticar[0].lol,                                  
+                            freefire: resultadoAutenticar[0].freefire                                   
+                        });             
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao procurar os jogos! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    
+
+}
+
+function verificar(req, res) {
+    fkUsuario = req.body.fkUsuarioServer;
+    usuarioModel.verificar(fkUsuario)
+        .then(
+            function (resultadoAutenticar) {
+                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                    console.log(resultadoAutenticar);
+                    res.json({
+                        idQuiz: resultadoAutenticar[0].idQuiz                                
+                    });             
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao tentar achar o id! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+
+}
+
+function porcentagem(req, res) {
+    fkQuiz = req.body.fkQuizServer;
+    usuarioModel.porcentagem(fkQuiz)
+        .then(
+            function (resultadoAutenticar) {
+                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                    console.log(resultadoAutenticar);
+                    res.json({
+                        acertos: resultadoAutenticar[0].acertos                                  
+                    });             
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao procurar os jogos! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+
+}
+
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    pegarJogos,
+    verificar,
+    porcentagem
 }

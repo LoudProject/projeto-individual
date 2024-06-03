@@ -1,94 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loud Estatísticas</title>
-    <link rel="stylesheet" href="../public/css/grafico.css">
+    <link rel="stylesheet" href="css/grafico.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+
+<body onload="pegarJogos()">
     <div id="header">
         <ul class="navbar aos" data-aos="fade-down" data-aos-delay="100">
-            <a href="index.html"><img src="assets/imgLoud.png   "></a>
+            <a href="index.html"><img src="assets/imgLoud.png"></a>
         </ul>
     </div>
 
 
     <div class="borda">
-
-        <div class="grafico-pizza">
-            <canvas id="myChart" style=" height:40vh; width:40vw" ></canvas>
+        <div class="borda-verde">
+            <div>
+                <h1>Comparação de jogos mais acompanhados:</h1>
+                <canvas id="myChart" style=" height:30vh; width:30vw"></canvas>
+            </div>
         </div>
-        
+        <div class="kpi">
+            <h1>A sua pontuação de acertos no quiz foi de:</h1>
+            <div class="pontos">
+                <p id="percentual"></p>
+            </div>
+        </div>
     </div>
 </body>
 
 </html>
 
 <script>
-        const labelsBarra = [
+    const labelsBarra = [
         'Valorant',
         'LoL',
         'Free Fire',
     ];
 
-    const dataBarra = {
-        labels: labelsBarra,
-        datasets: [{
-            label: 'Pontuação',
-            backgroundColor: '#35D32F',
-            hoverBorderColor: '#FFFFFF',
-            hoverBackgroundColor: '#35D32F',
-            borderWidth: [3, 3, 3, 3, 3, 3, 3, 6],
-            borderColor: '#111723',
-            data: [10, 7, 15],
-        }]
-    };
+    var votos_valorant = 0;
+    var votos_lol = 0;
+    var votos_freefire = 0;
 
-    const configBarra = {
-        type: 'bar',
-        data: dataBarra,
-        options: {
-            scales: {
-                y: {
-                    suggestedMin: 1,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 13
+
+    function pegarJogos() {
+        fetch("/usuarios/jogos", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegarJogos!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    votos_valorant = json.valorant;
+                    votos_lol = json.lol;
+                    votos_freefire = json.freefire;
+                    criarGraficos();
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar pegar os jogos!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    }
+
+    function criarGraficos() {
+
+
+        const dataBarra = {
+            labels: labelsBarra,
+            datasets: [{
+                label: 'Jogos',
+                backgroundColor: '#35D32F',
+                hoverBorderColor: '#FFFFFF',
+                hoverBackgroundColor: '#35D32F',
+                borderWidth: [3, 3, 3, 3, 3, 3, 3, 6],
+                borderColor: '#111723',
+                data: [votos_valorant, votos_lol, votos_freefire],
+            }]
+        };
+
+        const configBarra = {
+            type: 'bar',
+            data: dataBarra,
+            options: {
+                scales: {
+                    y: {
+                        suggestedMin: 1,
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                size: 20
+                            }
+                        },
+                        grid: {
+                            color: '#35D32F'
                         }
                     },
-                    grid: {
-                        color: '#35D32F'
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        }, grid: {
+                            color: 'transparent'
+                        }
+
                     }
                 },
-                x: {
-                    ticks: {
-                        color: 'white'
-                    }, grid: {
-                        color: 'transparent'
-                    }
-
-                }
-            }, 
-            plugins: {
-                legend: {
-                    labels: {
-                        color: 'white',
-                        font: {
-                            size: 20
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white',
+                            font: {
+                                size: 20
+                            }
                         }
                     }
                 }
             }
         }
-    };;
-  </script>
 
-<script>
-    const myChartBarra = new Chart(
-        document.getElementById('myChart'),
-        configBarra
-    );
+        const myChartBarra = new Chart(
+            document.getElementById('myChart'),
+            configBarra
+        )
+    }
+
+    pegarId()
+    var idQuiz = 0;
+    function porcentagem() {
+        console.log(idQuiz)
+        fetch("/usuarios/porcentagem", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        body: JSON.stringify({
+          fkQuizServer: idQuiz
+        }),
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO porcentagem!")
+            console.log(resposta)
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    percentual.innerHTML = (json.acertos * 10) + "%";
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar ver a porcentagem!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    }
+
+    function pegarId(){
+        var id = sessionStorage.ID_USUARIO;
+        fetch("/usuarios/verificar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: id
+            }),
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegarID!")
+            console.log(resposta)
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    idQuiz = json.idQuiz;
+                    // fkQuiz = 
+                    // votos_valorant = json.valorant;
+                    // percentual.innerHTML = 
+                    porcentagem()
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar ver a pegarID!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    }
 </script>

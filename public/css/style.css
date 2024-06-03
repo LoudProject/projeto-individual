@@ -45,7 +45,7 @@ body{
     justify-content: space-around;
 }
 .navbar li{
-    margin-left: 145px;
+    margin-left: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -580,14 +580,15 @@ body{
 .footer{
     background-color: #35D32F;
     color: white;
-    height: 100px;
+    height: 60px;
 }
 
 .footer .container{
+    display: flex;
     justify-content: space-evenly;
     text-align: center;
-    display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .footer .container p{

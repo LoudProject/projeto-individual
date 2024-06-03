@@ -76,7 +76,7 @@ const perguntas = [
         resposta: [
             {text: "Aspas, Sacy, Saadhak, Tuyz e Less", correct: false},
             {text: "Pancada, Aspas, Saadhak, Less e Cauanzin", correct: false},
-            {text: "Saadhak, Aspas, Less, Sacy e Tuyz", correct: false},
+            {text: "Saadhak, Aspas, Less, Sacy e Cauazin", correct: false},
             {text: "Pancada, Less, Sacy, Saadhak e Aspas", correct: true},
         ],
     },
@@ -166,7 +166,7 @@ function displayResult() {
     <a href="index.html"><img src="assets/imgLoud.png"></a>
     </div> Quiz encerrado! <br> Você acertou: <span class="score">${userScore}/${perguntas.length}</span>`
 
-    nextButtonEl.innerHTML = "Refazer Quiz";
+    nextButtonEl.innerHTML = "Ver estatísticas";
 }
 
 function proximaPergunta(){
@@ -183,7 +183,7 @@ nextButtonEl.addEventListener('click', function () {
     if(atualPerguntaIndex<perguntas.length){
         proximaPergunta();
     }else{
-        comecarQuiz();
+        window.location.href = "graficos.html"
     }
 });
 
